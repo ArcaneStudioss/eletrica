@@ -1,0 +1,61 @@
+/* Arcane · componentes de conversão e SEO dos 20 itens (playbooks/checklist-20-itens.md).
+   Mobile primeiro; o PC entra por min-width. Usa os tokens do site (--tinta, --papel, --nevoa, --grafite, --destaque, --raio) com valor de reserva. */
+
+/* 2 + 9. CTA fixo no celular: aparece só em tela pequena; funciona sem JavaScript */
+.cta-fixo{position:fixed;z-index:60;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom));display:flex;gap:8px;padding:8px;border-radius:calc(var(--raio,12px) + 6px);background:color-mix(in srgb,var(--papel,#fff) 92%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 14px 40px -12px rgba(0,0,0,.35),0 0 0 1px color-mix(in srgb,var(--tinta,#0a0a0a) 10%,transparent)}
+.cta-fixo .btn{flex:1;min-height:48px;text-align:center}
+.cta-fixo .btn--rota{flex:0 0 auto}
+@media (max-width:759px){body.tem-cta-fixo{padding-bottom:calc(76px + env(safe-area-inset-bottom))}}
+@media (min-width:760px){.cta-fixo{display:none}}
+
+/* 5. Breadcrumbs */
+.migalha{max-width:var(--max,1080px);margin:0 auto;padding:16px 20px 0;font-size:.875rem;color:var(--grafite,#5a5a5a)}
+.migalha ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 8px}
+.migalha li+li::before{content:"/";margin-right:8px;opacity:.5}
+.migalha a{color:inherit;text-decoration:underline;text-underline-offset:3px;padding:8px 0;display:inline-block}
+.migalha [aria-current]{color:var(--tinta,#0a0a0a);font-weight:600}
+
+/* 8. Promessa de tempo de resposta */
+.promessa{display:inline-flex;align-items:center;gap:10px;margin:14px 0 0;padding:10px 14px;border-radius:var(--raio,12px);background:var(--nevoa,#f2f2f2);font-size:.95rem}
+.promessa::before{content:"";flex:none;width:9px;height:9px;border-radius:50%;background:#1f9d55;box-shadow:0 0 0 4px rgba(31,157,85,.18)}
+
+/* 6. Cases · 15. Avaliações · 20. Equipe: grades de cartões */
+.cartoes{display:grid;gap:16px;grid-template-columns:1fr;list-style:none;margin:24px 0 0;padding:0}
+@media (min-width:760px){.cartoes{grid-template-columns:repeat(3,1fr)}}
+.cartao{border-radius:var(--raio,12px);background:var(--nevoa,#f2f2f2);padding:20px;overflow:hidden}
+.cartao h3{margin:0 0 6px;font-size:1.1rem}
+.cartao p{margin:0;color:var(--grafite,#5a5a5a)}
+.cartao img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:calc(var(--raio,12px) - 4px);margin:0 0 14px}
+.cartao--pessoa img{aspect-ratio:1/1}
+.cartao .resultado{display:block;margin-top:12px;font-weight:600;color:var(--tinta,#0a0a0a)}
+.avaliacao{margin:0}
+.avaliacao blockquote{margin:0 0 12px;font-size:1.02rem}
+.avaliacao figcaption{font-size:.9rem;color:var(--grafite,#5a5a5a)}
+.estrelas{letter-spacing:2px;color:#d99a00;font-size:1rem}
+.nota-rodape{margin-top:18px;font-size:.9rem;color:var(--grafite,#5a5a5a)}
+
+/* 14. Mapa e rota */
+.mapa{display:grid;gap:16px;margin-top:24px}
+.mapa__quadro{border-radius:var(--raio,12px);overflow:hidden;background:var(--nevoa,#f2f2f2);aspect-ratio:4/3}
+.mapa__quadro iframe{display:block;width:100%;height:100%;border:0}
+.mapa__acoes{display:flex;flex-wrap:wrap;gap:10px}
+.mapa address{font-style:normal}
+@media (min-width:760px){.mapa{grid-template-columns:1fr 1.4fr;align-items:center}.mapa__quadro{aspect-ratio:16/10}}
+
+/* 19. Aviso de cookies (usado por arcane-analytics.js; só aparece se houver GA4) */
+.aviso-cookies{position:fixed;z-index:80;left:12px;right:12px;bottom:calc(88px + env(safe-area-inset-bottom));max-width:460px;padding:16px;border-radius:calc(var(--raio,12px) + 4px);background:var(--tinta,#0a0a0a);color:var(--papel,#fff);box-shadow:0 20px 50px -14px rgba(0,0,0,.5);font-size:.92rem;line-height:1.5}
+.aviso-cookies p{margin:0 0 12px}
+.aviso-cookies a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.aviso-cookies__acoes{display:flex;gap:8px;flex-wrap:wrap}
+.aviso-cookies button{min-height:44px;padding:0 18px;border-radius:var(--raio,12px);border:1px solid color-mix(in srgb,var(--papel,#fff) 50%,transparent);background:transparent;color:inherit;font:inherit;font-weight:600;cursor:pointer}
+.aviso-cookies button[data-sim]{background:var(--papel,#fff);color:var(--tinta,#0a0a0a);border-color:var(--papel,#fff)}
+.aviso-cookies button:focus-visible{outline:3px solid #7aa7ff;outline-offset:2px}
+@media (min-width:760px){.aviso-cookies{left:20px;right:auto;bottom:20px}}
+@media (prefers-reduced-motion:no-preference){.aviso-cookies{animation:aviso-entra .35s ease-out both}@keyframes aviso-entra{from{opacity:0;transform:translateY(12px)}}}
+
+/* 4 + 18. Páginas de texto (obrigado, política): coluna de leitura */
+.pagina-texto{max-width:720px;margin:0 auto;padding:32px 20px 72px}
+.pagina-texto h1{margin:8px 0 12px}
+.pagina-texto h2{margin:32px 0 8px;font-size:1.25rem}
+.pagina-texto p,.pagina-texto li{color:var(--grafite,#5a5a5a)}
+.pagina-texto .acoes{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}

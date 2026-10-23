@@ -33,3 +33,7 @@ Barra de rolagem fina nas cores do tema, seleção vermelha clara, foco visível
 
 ## Proibições
 Tracinho longo em texto, número ou depoimento inventado, foto de IA como equipe, logo de fabricante, OS de exemplo sem a palavra "EXEMPLO".
+
+## Decisão (23/10/2026)
+Gabriel aprovou e pediu "mais chamativo, menos artificial". Ficou o **A** com o topo escuro: a placa eletrônica viva em canvas (corrente nas trilhas, varredura de diagnóstico que acha os defeitos e conserta, LED vermelho vira verde, lanterna no mouse), o osciloscópio por cima, painel vermelho "Máquina parada custa caro" e a OS do conceito B na seção de processo. Página clara (bancada) com painéis escuros/vermelho.
+Desempenho: brilhos pré-desenhados (sprites), sem `backdrop-filter`/`mix-blend-mode` sobre o canvas, teto de pulsos (34 celular, 70 PC), pausa fora da tela. Sem JS: imagem estática da placa (`img/placa-*.webp`) e onda em SVG.
