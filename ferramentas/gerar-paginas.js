@@ -3,7 +3,7 @@
 const fs = require('fs'), path = require('path');
 const raiz = path.join(__dirname, '..');
 const DOM = 'https://fepower.arcanestudios.io';
-const V = '20261023';
+const V = '20261023b';
 const idx = fs.readFileSync(path.join(raiz, 'index.html'), 'utf8');
 const pega = re => { const m = idx.match(re); if (!m) throw new Error('não achei ' + re); return m[0]; };
 const topo = pega(/<header class="topo">[\s\S]*?<\/header>/).replace(/href="#(servicos|processo|cases|duvidas)"/g, 'href="/#$1"');

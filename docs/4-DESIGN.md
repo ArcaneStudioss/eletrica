@@ -43,3 +43,6 @@ Desempenho: brilhos pré-desenhados (sprites), sem `backdrop-filter`/`mix-blend-
 Logo da F&E redesenhada em vetor (engrenagem vermelha `#E3262B`, arcos azuis `#1F6FD8`/`#4A97EC`, nome em Geist 800): a engrenagem gira e entra, os arcos giram em sentidos opostos e fecham, o nome se revela e os arcos pulsam até 100%. Se chegar o arquivo original, trocar mantendo as classes `engrenagem`, `ponta`, `arco` e `nome`.
 
 **Botões em pílula** (pedido do Gabriel, 23/10): todos os `.btn` com `border-radius: 999px`; cartões continuam com cantos de 8 a 18 px.
+
+## Topo mais calmo (pedido do Gabriel, 23/10/2026: "muito poluído")
+Placa com metade dos componentes, sem etiquetas, trilhas e pinos bem mais apagados, poucos pulsos (26 no PC, 12 no celular), varredura discreta e no máximo 3 defeitos. Camada escura mais forte sobre a placa. No PC, a placa aparece mais nítida só em volta do mouse (lanterna), então o detalhe técnico fica como descoberta, não como ruído.

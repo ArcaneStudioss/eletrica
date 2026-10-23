@@ -11,7 +11,7 @@
   const economia = navigator.connection?.saveData === true;
 
   const rng = semente => () => (semente = (semente * 16807) % 2147483647) / 2147483647;
-  const COR = { trilha: 'rgba(98,128,170,.34)', trilhaClara: 'rgba(143,166,198,.55)', corpo: '#0A1628', borda: 'rgba(143,166,198,.32)', pad: 'rgba(170,190,215,.55)', serigrafia: 'rgba(143,166,198,.5)', vermelho: '255,61,71', azul: '158,193,255', verde: '43,212,125' };
+  const COR = { trilha: 'rgba(98,128,170,.17)', trilhaClara: 'rgba(143,166,198,.26)', corpo: '#0A1628', borda: 'rgba(143,166,198,.15)', pad: 'rgba(170,190,215,.24)', serigrafia: 'rgba(143,166,198,.22)', vermelho: '255,61,71', azul: '158,193,255', verde: '43,212,125' };
   const sprites = {};
   const brilho = (cor, raio) => {
     const k = cor + raio; if (sprites[k]) return sprites[k];
@@ -28,6 +28,7 @@
     const ctx = cv.getContext('2d');
     const base = document.createElement('canvas'), bctx = base.getContext('2d');
     let W = 0, H = 0, dpr = 1, G = 22, comps = [], trilhas = [], pulsos = [], rodando = false, visivel = false, t0 = performance.now(), ultimo = 0;
+    let lant = null, lctx = null;
     let mouse = { x: -1e4, y: -1e4, ax: 0, ay: 0, tx: 0, ty: 0 };
     let varredura = { ativa: false, x: -1, inicio: 0 };
 
@@ -55,7 +56,7 @@
         return pc ? Math.min(1, 0.12 + Math.pow(x, 1.4) * 1.25) : Math.min(1, 0.2 + (1 - y) * 1.1);
       };
       comps = []; trilhas = [];
-      const alvo = Math.round((W * H) / (modo === 'hero' ? 15000 : 26000));
+      const alvo = Math.round((W * H) / (modo === 'hero' ? 30000 : 42000));
       let n = 0, tentativas = 0;
       while (comps.length < alvo && tentativas++ < alvo * 40) {
         const tipo = r() < 0.42 ? 'ic' : r() < 0.55 ? 'smd' : r() < 0.6 ? 'cap' : 'con';
@@ -110,12 +111,12 @@
       // defeitos: alguns CIs começam com LED vermelho
       if (modo === 'hero') {
         const ics = comps.filter(k => k.tipo === 'ic');
-        for (let i = 0; i < Math.min(5, Math.ceil(ics.length / 4)); i++) { const k = ics[Math.floor(r() * ics.length)]; if (k) k.falha = true; }
+        for (let i = 0; i < Math.min(3, Math.ceil(ics.length / 5)); i++) { const k = ics[Math.floor(r() * ics.length)]; if (k) k.falha = true; }
         if (reduzir) comps.forEach(k => { if (k.falha) { k.falha = false; k.consertadoEm = 1; } });
       }
       pulsos = [];
-      const teto = W < 700 ? 34 : 70;
-      const qtd = Math.min(teto, Math.round(trilhas.length * (economia ? 0.12 : modo === 'hero' ? 0.32 : 0.16)));
+      const teto = W < 700 ? 12 : 26;
+      const qtd = Math.min(teto, Math.round(trilhas.length * (economia ? 0.12 : modo === 'hero' ? 0.2 : 0.1)));
       for (let i = 0; i < qtd; i++) pulsos.push(novoPulso(r, true));
       varredura = { ativa: false, x: -1, inicio: performance.now() + 900 };
     }
@@ -124,7 +125,7 @@
     function novoPulso(r = sorte, espalhar = false) {
       const tr = trilhas[Math.floor(r() * trilhas.length)];
       if (!tr) return null;
-      return { tr, s: espalhar ? r() * tr.total : 0, v: 60 + r() * 120, cor: r() < 0.72 ? COR.vermelho : COR.azul, cauda: 60 + r() * 90, ida: r() < 0.5 };
+      return { tr, s: espalhar ? r() * tr.total : 0, v: 60 + r() * 120, cor: r() < 0.85 ? COR.vermelho : COR.azul, cauda: 60 + r() * 90, ida: r() < 0.5 };
     }
 
     function ponto(tr, s) {
@@ -141,7 +142,7 @@
       const c = bctx; c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, W, H);
       c.lineCap = 'round'; c.lineJoin = 'round';
       // malha do plano de terra
-      c.fillStyle = 'rgba(143,166,198,.07)';
+      c.fillStyle = 'rgba(143,166,198,.035)';
       for (let x = G / 2; x < W; x += G) for (let y = G / 2; y < H; y += G) c.fillRect(x - .6, y - .6, 1.2, 1.2);
       for (const tr of trilhas) {
         c.strokeStyle = tr.largura > 2 ? COR.trilhaClara : COR.trilha; c.lineWidth = tr.largura;
@@ -161,14 +162,13 @@
           c.beginPath(); c.arc(cx, cy, rr * .55, -0.6, 0.6); c.strokeStyle = 'rgba(170,190,215,.35)'; c.stroke();
         } else {
           const g = c.createLinearGradient(x, y, x, y + h);
-          g.addColorStop(0, k.tipo === 'smd' ? '#24364F' : '#132339'); g.addColorStop(1, '#09131F');
+          g.addColorStop(0, k.tipo === 'smd' ? '#18263A' : '#0F1C2F'); g.addColorStop(1, '#09131F');
           c.fillStyle = g; roundRect(c, x, y, w, h, k.tipo === 'ic' ? 3 : 2); c.fill();
           c.strokeStyle = COR.borda; c.lineWidth = 1; c.stroke();
           if (k.tipo === 'ic') { c.beginPath(); c.arc(x + 7, y + 7, 2.2, 0, 7); c.fillStyle = 'rgba(143,166,198,.35)'; c.fill(); }
         }
         c.fillStyle = COR.pad;
         for (const [pc, pl] of k.pinos) { const px = pc * G + G / 2, py = pl * G + G / 2; c.fillRect(px - 3, py - 3, 6, 6); }
-        if (k.tipo !== 'smd' && w > 30) { c.fillStyle = COR.serigrafia; c.fillText(k.nome, x + (k.tipo === 'cap' ? -2 : 4), y + h + 11); }
       }
     }
 
@@ -185,11 +185,19 @@
       ctx.setTransform(dpr, 0, 0, dpr, ox * dpr, oy * dpr);
       ctx.globalCompositeOperation = 'lighter';
 
-      // lanterna do mouse: ilumina a placa onde o cursor passa
+      // lanterna do mouse: em volta do cursor a placa aparece mais nítida (o resto fica no escuro)
       if (fino && mouse.x > -1e3) {
-        const g = ctx.createRadialGradient(mouse.x - ox, mouse.y - oy, 0, mouse.x - ox, mouse.y - oy, 220);
-        g.addColorStop(0, 'rgba(120,150,200,.16)'); g.addColorStop(1, 'rgba(120,150,200,0)');
-        ctx.fillStyle = g; ctx.fillRect(mouse.x - ox - 220, mouse.y - oy - 220, 440, 440);
+        const R = 230, lx = mouse.x - ox, ly = mouse.y - oy;
+        if (!lant) { lant = document.createElement('canvas'); lctx = lant.getContext('2d'); }
+        const L = Math.round(R * 2 * dpr); if (lant.width !== L) { lant.width = lant.height = L; }
+        lctx.globalCompositeOperation = 'source-over'; lctx.clearRect(0, 0, L, L);
+        lctx.drawImage(base, (lx - R) * dpr, (ly - R) * dpr, L, L, 0, 0, L, L);
+        lctx.globalCompositeOperation = 'destination-in';
+        const g = lctx.createRadialGradient(L / 2, L / 2, 0, L / 2, L / 2, L / 2);
+        g.addColorStop(0, 'rgba(0,0,0,1)'); g.addColorStop(.55, 'rgba(0,0,0,.6)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+        lctx.fillStyle = g; lctx.fillRect(0, 0, L, L);
+        ctx.drawImage(lant, lx - R, ly - R, R * 2, R * 2); ctx.drawImage(lant, lx - R, ly - R, R * 2, R * 2);
+        ctx.globalAlpha = 1;
       }
 
       // pulsos de corrente (cometa com cauda)
@@ -218,14 +226,14 @@
           if (f <= 1) {
             const x = -80 + f * (W + 160);
             const g = ctx.createLinearGradient(x - 90, 0, x + 6, 0);
-            g.addColorStop(0, 'rgba(158,193,255,0)'); g.addColorStop(.85, 'rgba(158,193,255,.10)'); g.addColorStop(1, 'rgba(210,228,255,.3)');
+            g.addColorStop(0, 'rgba(158,193,255,0)'); g.addColorStop(.85, 'rgba(158,193,255,.04)'); g.addColorStop(1, 'rgba(210,228,255,.13)');
             ctx.fillStyle = g; ctx.fillRect(x - 90 - ox, -oy - 10, 96, H + 20);
             for (const k of comps) if (k.falha && (k.c + k.w / 2) * G < x) { k.falha = false; k.consertadoEm = agora; for (let j = 0; j < 4; j++) { const tr = trilhas.find(q => q.dono === k && sorte() < .6); if (tr) pulsos.push({ tr, s: 0, v: 160, cor: COR.verde, cauda: 120, ida: true }); } }
           } else if (f > ciclo / dur) {
             // nova rodada: quebra outros componentes
             const ics = comps.filter(k => k.tipo === 'ic');
             ics.forEach(k => { if (sorte() < 0.18) { k.falha = true; } });
-            if (pulsos.length > 120) pulsos.length = 120;
+            if (pulsos.length > 40) pulsos.length = 40;
             varredura.inicio = agora + 400;
           }
         }
