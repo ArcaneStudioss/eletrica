@@ -40,4 +40,6 @@ Desempenho: brilhos pré-desenhados (sprites), sem `backdrop-filter`/`mix-blend-
 
 ## Tela de carregamento (pedido do Gabriel, 23/10/2026)
 "Ligando o sistema": a engrenagem se desenha e parte girando como motor, o arco azul fecha em volta, o nome entra, um pulso elétrico corre na linha e a porcentagem segue o carregamento real. Em 100% a linha inteira acende (clarão) e a tela fecha num círculo com um anel vermelho abrindo o site. Dura cerca de 2,3 a 3 s, aparece **uma vez por visita**, nunca com movimento reduzido nem sem JS, e tem trava que a tira do ar em 5,4 s mesmo se algo falhar (`carga.js` + fim do `styles.css`).
-**Trocar a logo provisória** pelo vetor oficial mantendo as classes `engrenagem`, `arco` e `nome` (ou adaptar a animação ao desenho novo).
+Logo da F&E redesenhada em vetor (engrenagem vermelha `#E3262B`, arcos azuis `#1F6FD8`/`#4A97EC`, nome em Geist 800): a engrenagem gira e entra, os arcos giram em sentidos opostos e fecham, o nome se revela e os arcos pulsam até 100%. Se chegar o arquivo original, trocar mantendo as classes `engrenagem`, `ponta`, `arco` e `nome`.
+
+**Botões em pílula** (pedido do Gabriel, 23/10): todos os `.btn` com `border-radius: 999px`; cartões continuam com cantos de 8 a 18 px.

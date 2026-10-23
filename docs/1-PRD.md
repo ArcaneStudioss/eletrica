@@ -29,7 +29,7 @@ Quando uma máquina para por falha eletrônica, a fábrica perde dinheiro por ho
 
 ## Material do cliente (e o que falta)
 - [x] Nome, serviços, WhatsApp, Instagram, marcas atendidas (do post).
-- [ ] **Logo oficial em vetor (SVG/PDF/AI)**. Pedido do Gabriel (23/10): colocar a logo deles no cabeçalho, na tela de carregamento, no favicon e na imagem de compartilhamento. Hoje a tela de carregamento usa uma **logo provisória redesenhada do post** (engrenagem vermelha + arco azul) e o cabeçalho usa só o nome em texto.
+- [x] Logo: **redesenhada em vetor a partir do post** (23/10, pedido do Gabriel) e aplicada no cabeçalho, na tela de carregamento, no ícone da aba e na imagem de compartilhamento. [ ] Pedir o arquivo original para conferir cores e a fonte exata do nome.
 - [ ] **Fotos reais** da bancada, equipe e equipamentos consertados. O post é marcado como "Conteúdo de IA": a foto da moça não pode ir ao site como se fosse a equipe.
 - [ ] Endereço/CNPJ, cidade-base e área de coleta.
 - [ ] Confirmar se o "24 h" é atendimento ou só recebimento de chamado.
