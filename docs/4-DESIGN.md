@@ -46,3 +46,6 @@ Logo da F&E redesenhada em vetor (engrenagem vermelha `#E3262B`, arcos azuis `#1
 
 ## Topo mais calmo (pedido do Gabriel, 23/10/2026: "muito poluído")
 Placa com metade dos componentes, sem etiquetas, trilhas e pinos bem mais apagados, poucos pulsos (26 no PC, 12 no celular), varredura discreta e no máximo 3 defeitos. Camada escura mais forte sobre a placa. No PC, a placa aparece mais nítida só em volta do mouse (lanterna), então o detalhe técnico fica como descoberta, não como ruído.
+
+## Respiro no celular (pedido do Gabriel, 23/10/2026: "muito apertado")
+No celular: topo só com título, frase e um botão (osciloscópio e "Ligar" saem; o "Ligar" fica na barra fixa); barra fixa só aparece depois que o botão do topo sai da tela; seções com 84 px de respiro; a OS ilustrada some (os passos já contam o processo); painel vermelho vira lista com linhas em vez de três caixas; laudo reto com o selo "exemplo" dentro do papel; contato com um botão só. PC sem mudança.

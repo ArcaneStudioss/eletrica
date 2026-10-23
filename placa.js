@@ -285,6 +285,7 @@
     const ruido = Array.from({ length: 512 }, () => r() - 0.5);
     const medir = () => { const b = cv.getBoundingClientRect(); dpr = Math.min(window.devicePixelRatio || 1, 2); W = b.width; H = b.height; cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); };
     function desenhar(agora, final = false) {
+      if (!(W > 1 && H > 1)) return;                         // escondido (ex.: celular): não desenha
       const t = final ? 9 : (agora - inicio) / 1000;
       const k = final ? 1 : Math.min(1, Math.max(0, (t - 0.5) / 1.6));
       const e = k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;

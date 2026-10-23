@@ -87,3 +87,10 @@
 
   const ano = d.getElementById('ano'); if (ano) ano.textContent = new Date().getFullYear();
 })();
+
+// Barra fixa do celular: só aparece quando o botão do topo sai da tela (evita dois botões iguais colados)
+(() => {
+  const barra = document.querySelector('.cta-fixo'), alvo = document.querySelector('.hero .acoes, .pagina-topo .acoes');
+  if (!barra || !alvo || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(([e]) => barra.classList.toggle('cta-fixo--oculto', e.isIntersecting)).observe(alvo);
+})();

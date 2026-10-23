@@ -393,3 +393,61 @@ html.carregando .hero-in{opacity:0;transform:translateY(24px)}
 .cta-fixo{border-radius:999px}
 .ui-dialog .btn,.aviso-cookies button{border-radius:999px}
 .menu a.btn{border-radius:999px}
+
+/* ---------- Respiro no celular (pedido do Gabriel, 23/10: "tudo muito apertado") ----------
+   Base = celular. No PC (min-width) volta o que só faz sentido com espaço. */
+@media (max-width:759px){
+  /* topo: só título, frase e um botão. Osciloscópio e "ligar" saem (o "Ligar" fica na barra fixa) */
+  .hero .scope{display:none}
+  .hero .acoes .btn-vidro{display:none}
+  .hero-in{gap:0;padding:28px 20px 28px}
+  .hero h1{font-size:2.25rem;line-height:1.06;margin-bottom:18px}
+  .hero .lead{font-size:1.02rem;margin-bottom:28px}
+  .hero{min-height:calc(100svh - 160px)}
+
+  .bloco{padding:84px 20px}
+  .bloco h2{margin-bottom:18px}
+  .bloco .intro{margin-bottom:36px}
+  .rotulo{margin-bottom:16px}
+  .marcas{padding-top:40px}
+  .marcas__rotulo{padding:0 20px}
+
+  /* serviços: cartões com mais ar */
+  .barramento{gap:14px}
+  .comp a{padding:18px 16px;gap:14px}
+  .comp__nome small{margin-top:4px;line-height:1.4}
+
+  /* processo: a OS ilustrada repete os passos; no celular ficam só os passos */
+  .processo .os{display:none}
+  .passos{margin-top:32px;gap:0}
+  .passos li{padding:20px 0}
+
+  /* painel vermelho: lista leve em vez de três caixas */
+  .parada .bloco{padding-top:64px;padding-bottom:64px}
+  .parada__grade{gap:0;margin:32px 0 36px}
+  .parada__item{background:none;box-shadow:none;border-radius:0;padding:18px 0;border-top:1px solid rgba(255,255,255,.25)}
+  .parada__item:last-child{border-bottom:1px solid rgba(255,255,255,.25)}
+  .parada__item strong{font-size:1.6rem}
+
+  /* laudo: selo "exemplo" dentro do papel */
+  .laudo{transform:none;margin:0 4px}
+  .laudo::after{right:14px;top:16px}
+  .laudo h3{padding-right:90px}
+  .laudo-grade{gap:40px}
+
+  .gente{gap:16px}
+  .cartao-g{padding:26px 22px}
+
+  .faq summary{padding:22px 0}
+
+  /* contato: um botão só (o "Ligar" já está na barra fixa) */
+  .contato .bloco{padding-top:72px;padding-bottom:72px}
+  .contato__acoes .btn-vidro{display:none}
+  .contato__acoes .btn{width:100%}
+  .contato .promessa{margin-top:18px}
+  .contato__dados{margin-top:32px;gap:10px}
+
+  .rodape{padding:32px 20px 40px;gap:14px}
+}
+.cta-fixo{transition:transform .35s var(--ease-out),opacity .25s}
+.cta-fixo--oculto{transform:translateY(140%);opacity:0;pointer-events:none}
