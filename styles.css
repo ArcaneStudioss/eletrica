@@ -329,3 +329,65 @@ html:not(.js) .scope canvas{display:none}
 @media (min-width:1080px){.scope__reserva{height:190px}}
 .migalha li{display:inline-flex;align-items:center}
 .migalha [aria-current]{padding:8px 0}
+
+/* ---------- Tela de carregamento: "ligando o sistema" ----------
+   Só existe com html.carregando (posto pelo carga.js). Trava de segurança: some sozinha aos 5 s mesmo sem JS. */
+.carga{display:none}
+html.carregando{overflow:hidden}
+html.carregando .carga{display:grid;place-items:center;position:fixed;inset:0;z-index:200;background:radial-gradient(90% 70% at 50% 45%,#12264A 0%,var(--noite) 62%);color:#fff;
+  animation:carga-trava 0s 5.4s forwards;clip-path:circle(150% at 50% 50%)}
+@keyframes carga-trava{to{visibility:hidden;opacity:0}}
+html.carregando .carga::before{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
+  background-image:linear-gradient(rgba(91,122,166,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(91,122,166,.12) 1px,transparent 1px);background-size:40px 40px;
+  -webkit-mask-image:radial-gradient(60% 55% at 50% 50%,#000,transparent);mask-image:radial-gradient(60% 55% at 50% 50%,#000,transparent)}
+.carga__centro{position:relative;z-index:1;isolation:isolate;display:grid;justify-items:center;gap:22px;width:min(86vw,440px)}
+.carga__logo{width:100%;height:auto;overflow:visible}
+.carga__logo .engrenagem{transform-origin:50px 50px;transform-box:view-box}
+.carga__logo .engrenagem path{fill:#D7262E;stroke:#FF3D47;stroke-width:1.2;stroke-dasharray:100;stroke-dashoffset:100;fill-opacity:0}
+.carga__logo .arco{fill:none;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100}
+.carga__logo .arco--1{stroke:#2F6FE0;stroke-width:7}
+.carga__logo .arco--2{stroke:#7FB0FF;stroke-width:3.5}
+.carga__logo .nome text{font-family:var(--fonte);font-weight:800;font-size:46px;letter-spacing:-.5px;fill:#fff}
+.carga__logo .nome .nome__sub{font-family:var(--mono);font-weight:500;font-size:13px;letter-spacing:4.2px;fill:#8FA6C6}
+.carga__logo .nome{clip-path:inset(0 100% 0 0)}
+.carga__status{display:flex;justify-content:space-between;width:100%;font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#8FA6C6}
+.carga__status b{color:#fff;font-weight:600;font-variant-numeric:tabular-nums}
+.carga__barra{width:100%;height:3px;border-radius:3px;background:#1E2D44;overflow:hidden}
+.carga__barra i{display:block;height:100%;background:linear-gradient(90deg,var(--destaque),var(--destaque-vivo));box-shadow:0 0 14px var(--destaque-vivo);transform-origin:left;transform:scaleX(var(--carga,0))}
+.carga__onda{position:absolute;left:0;top:50%;width:100%;height:160px;transform:translateY(-50%);opacity:.9;pointer-events:none}
+.carga__onda path{fill:none;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.onda-base{stroke:rgba(91,122,166,.22);stroke-width:1.5}
+.onda-pulso{stroke:var(--destaque-vivo);stroke-width:2.5;stroke-dasharray:14 86;stroke-dashoffset:100;filter:drop-shadow(0 0 6px rgba(255,61,71,.9))}
+/* a onda fica atrás do logo: o centro escurece para o texto ler bem */
+.carga__centro::before{content:"";position:absolute;inset:-40px -30px;z-index:-1;background:radial-gradient(closest-side,rgba(8,17,31,.92),rgba(8,17,31,0));pointer-events:none}
+
+html.carregando .engrenagem path{animation:eng-desenha .7s var(--ease-out) .1s forwards,eng-enche .4s ease-out .65s forwards}
+html.carregando .engrenagem{animation:eng-parte 1.6s cubic-bezier(.55,0,.25,1) .55s both,eng-gira 2.4s linear 2.15s infinite}
+html.carregando .arco--1{animation:arco-desenha .8s var(--ease-out) .45s forwards}
+html.carregando .arco--2{animation:arco-desenha .7s var(--ease-out) .7s forwards}
+html.carregando .nome{animation:nome-entra .7s var(--ease-out) .9s forwards}
+html.carregando .onda-pulso{animation:onda-corre 1.25s cubic-bezier(.45,0,.2,1) .2s infinite}
+@keyframes eng-desenha{to{stroke-dashoffset:0}}
+@keyframes eng-enche{to{fill-opacity:1}}
+@keyframes eng-parte{from{transform:rotate(-90deg) scale(.85)}to{transform:rotate(360deg) scale(1)}}
+@keyframes eng-gira{to{transform:rotate(720deg)}}
+@keyframes arco-desenha{to{stroke-dashoffset:0}}
+@keyframes nome-entra{to{clip-path:inset(0 0 0 0)}}
+@keyframes onda-corre{to{stroke-dashoffset:-14}}
+
+/* 100%: a linha toda acende e a engrenagem brilha */
+html.carga-pronto .onda-base{stroke:var(--destaque-vivo);stroke-width:2;filter:drop-shadow(0 0 8px rgba(255,61,71,.9));transition:stroke .15s,filter .15s}
+html.carga-pronto .engrenagem path{filter:drop-shadow(0 0 14px rgba(255,61,71,.85))}
+html.carga-pronto .carga__status span{color:#fff}
+html.carga-pronto .carga::before{opacity:.9;transition:opacity .2s}
+
+/* saída: a tela fecha num círculo em cima da engrenagem e um anel vermelho abre o site */
+html.carga-saindo .carga{transition:clip-path .78s cubic-bezier(.7,0,.2,1);clip-path:circle(0% at 50% 50%)}
+html.carga-saindo .carga__centro{transition:transform .5s cubic-bezier(.6,0,.3,1),opacity .4s;transform:scale(1.12);opacity:0}
+html.carga-saindo .carga::after{content:"";position:fixed;left:50%;top:50%;width:40px;height:40px;margin:-20px;border-radius:50%;box-shadow:0 0 0 3px var(--destaque-vivo),0 0 40px 8px rgba(255,61,71,.55);animation:anel .8s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes anel{to{transform:scale(60);opacity:0}}
+
+/* o topo entra depois que a tela sai */
+html.motion .hero-in{transition:opacity .9s var(--ease-out) .1s,transform .9s var(--ease-out) .1s}
+html.carregando .hero-in{opacity:0;transform:translateY(24px)}
+@media (max-width:759px){.carga__onda{top:28%;height:120px}}

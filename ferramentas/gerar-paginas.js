@@ -9,6 +9,7 @@ const pega = re => { const m = idx.match(re); if (!m) throw new Error('não ache
 const topo = pega(/<header class="topo">[\s\S]*?<\/header>/).replace(/href="#(servicos|processo|cases|duvidas)"/g, 'href="/#$1"');
 const rodape = pega(/<footer class="rodape">[\s\S]*?<\/footer>/);
 const ctaFixo = pega(/<div class="cta-fixo">[\s\S]*?<\/div>/);
+const carga = pega(/  <!-- Tela de carregamento[\s\S]*?<!-- \/carga -->/);
 const dialogo = pega(/<dialog class="chamado"[\s\S]*?<\/dialog>/);
 const WA = 'https://wa.me/5519982784289?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20abrir%20um%20chamado.';
 
@@ -92,11 +93,13 @@ for (const s of servicos) {
   <link rel="stylesheet" href="/arcane-motion.css?v=${V}">
   <link rel="stylesheet" href="/arcane-conversao.css?v=${V}">
   <link rel="stylesheet" href="/styles.css?v=${V}">
+  <script src="/carga.js?v=${V}"></script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"${DOM}/"},{"@type":"ListItem","position":2,"name":"Serviços","item":"${DOM}/#servicos"},{"@type":"ListItem","position":3,"name":"${s.nome}","item":"${url}"}]},{"@type":"Service","name":"${s.titulo}","description":"${s.desc}","provider":{"@type":"ProfessionalService","name":"F&E Power Serviços Industrial","telephone":"+55 19 98278-4289","url":"${DOM}/"}}]}
   </script>
 </head>
 <body class="tem-cta-fixo">
+${carga}
   <!-- Gerado por ferramentas/gerar-paginas.js. Editar lá, não aqui. -->
   <div class="progresso-scroll" aria-hidden="true"></div>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>

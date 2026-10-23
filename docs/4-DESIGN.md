@@ -37,3 +37,7 @@ Tracinho longo em texto, número ou depoimento inventado, foto de IA como equipe
 ## Decisão (23/10/2026)
 Gabriel aprovou e pediu "mais chamativo, menos artificial". Ficou o **A** com o topo escuro: a placa eletrônica viva em canvas (corrente nas trilhas, varredura de diagnóstico que acha os defeitos e conserta, LED vermelho vira verde, lanterna no mouse), o osciloscópio por cima, painel vermelho "Máquina parada custa caro" e a OS do conceito B na seção de processo. Página clara (bancada) com painéis escuros/vermelho.
 Desempenho: brilhos pré-desenhados (sprites), sem `backdrop-filter`/`mix-blend-mode` sobre o canvas, teto de pulsos (34 celular, 70 PC), pausa fora da tela. Sem JS: imagem estática da placa (`img/placa-*.webp`) e onda em SVG.
+
+## Tela de carregamento (pedido do Gabriel, 23/10/2026)
+"Ligando o sistema": a engrenagem se desenha e parte girando como motor, o arco azul fecha em volta, o nome entra, um pulso elétrico corre na linha e a porcentagem segue o carregamento real. Em 100% a linha inteira acende (clarão) e a tela fecha num círculo com um anel vermelho abrindo o site. Dura cerca de 2,3 a 3 s, aparece **uma vez por visita**, nunca com movimento reduzido nem sem JS, e tem trava que a tira do ar em 5,4 s mesmo se algo falhar (`carga.js` + fim do `styles.css`).
+**Trocar a logo provisória** pelo vetor oficial mantendo as classes `engrenagem`, `arco` e `nome` (ou adaptar a animação ao desenho novo).

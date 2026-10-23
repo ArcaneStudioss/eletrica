@@ -27,11 +27,28 @@
   <link rel="stylesheet" href="/arcane-motion.css?v=20261023">
   <link rel="stylesheet" href="/arcane-conversao.css?v=20261023">
   <link rel="stylesheet" href="/styles.css?v=20261023">
+  <script src="/carga.js?v=20261023"></script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://fepower.arcanestudios.io/"},{"@type":"ListItem","position":2,"name":"Serviços","item":"https://fepower.arcanestudios.io/#servicos"},{"@type":"ListItem","position":3,"name":"Placas eletrônicas","item":"https://fepower.arcanestudios.io/servicos/placas-eletronicas/"}]},{"@type":"Service","name":"Conserto de placas eletrônicas industriais","description":"Conserto de placas eletrônicas industriais em bancada: placas de controle, potência e fontes. Multimarcas, com laudo técnico e coleta sem custo.","provider":{"@type":"ProfessionalService","name":"F&E Power Serviços Industrial","telephone":"+55 19 98278-4289","url":"https://fepower.arcanestudios.io/"}}]}
   </script>
 </head>
 <body class="tem-cta-fixo">
+  <!-- Tela de carregamento. LOGO PROVISÓRIA redesenhada a partir do post: trocar pelo vetor oficial do cliente
+       (manter as classes engrenagem / arco / nome para a animação continuar funcionando). -->
+  <div class="carga" aria-hidden="true">
+    <svg class="carga__onda" viewBox="0 0 1200 200" preserveAspectRatio="none"><path class="onda-base" d="M0 100 H880 L900 100 L915 40 L935 170 L955 20 L975 150 L995 100 H1200"/><path class="onda-pulso" pathLength="100" d="M0 100 H880 L900 100 L915 40 L935 170 L955 20 L975 150 L995 100 H1200"/></svg>
+    <div class="carga__centro">
+      <svg class="carga__logo" viewBox="0 0 400 110">
+        <g class="engrenagem"><path pathLength="100" fill-rule="evenodd" d="M86.96 41.15 L95.47 43.03 L95.47 56.97 L86.96 58.85 L85.10 64.56 L90.88 71.09 L82.69 82.36 L74.70 78.88 L69.83 82.41 L70.68 91.09 L57.42 95.40 L53.01 87.88 L46.99 87.88 L42.58 95.40 L29.32 91.09 L30.17 82.41 L25.30 78.88 L17.31 82.36 L9.12 71.09 L14.90 64.56 L13.04 58.85 L4.53 56.97 L4.53 43.03 L13.04 41.15 L14.90 35.44 L9.12 28.91 L17.31 17.64 L25.30 21.12 L30.17 17.59 L29.32 8.91 L42.58 4.60 L46.99 12.12 L53.01 12.12 L57.42 4.60 L70.68 8.91 L69.83 17.59 L74.70 21.12 L82.69 17.64 L90.88 28.91 L85.10 35.44 Z M76 50 A26 26 0 1 0 24 50 A26 26 0 1 0 76 50 Z"/></g>
+        <path class="arco arco--1" pathLength="100" d="M30 18 A44 44 0 1 1 22 88"/>
+        <path class="arco arco--2" pathLength="100" d="M44 10 A52 52 0 0 1 104 66"/>
+        <g class="nome"><text x="118" y="62">F&amp;E POWER</text><text class="nome__sub" x="122" y="88">SERVIÇOS INDUSTRIAL</text></g>
+      </svg>
+      <div class="carga__status"><span>Ligando o sistema</span><b data-carga-pct>0%</b></div>
+      <div class="carga__barra"><i></i></div>
+    </div>
+  </div>
+  <!-- /carga -->
   <!-- Gerado por ferramentas/gerar-paginas.js. Editar lá, não aqui. -->
   <div class="progresso-scroll" aria-hidden="true"></div>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
